@@ -41,11 +41,14 @@ public:
         }
     }
 
-    void print()
-    {
-        cout << str << endl;
-    }
+    friend std::ostream &operator<<(std::ostream &os, const SanitizedString &str);
 };
+
+std::ostream &operator<<(std::ostream &os, const SanitizedString &str)
+{
+    os << str.str;
+    return os;
+}
 
 int main()
 {
@@ -56,13 +59,13 @@ int main()
     SanitizedString sanString = SanitizedString(str);
 
     cout << "Ulaz : ";
-    sanString.print();
+    cout << sanString << endl;
 
     sanString.removeNonAlphaChars();
     sanString.removeDuplicateWhitespace();
 
     cout << "Izlaz: ";
-    sanString.print();
+    cout << sanString << endl;
 
     return 0;
 }
