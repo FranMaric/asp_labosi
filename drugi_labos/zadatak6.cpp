@@ -11,7 +11,7 @@ private:
     int izlaz = 0;
 
 public:
-    bool enqueue(double item)
+    bool dodaj(double item)
     {
         if ((ulaz + 1) % MAX == izlaz)
             return false;
@@ -19,24 +19,13 @@ public:
         ulaz = (ulaz + 1) % MAX;
         return true;
     }
-    bool dequeue(double &item)
+    bool skini(double &item)
     {
         if (ulaz == izlaz)
             return false;
         item = queue[izlaz];
         izlaz = (izlaz + 1) % MAX;
         return true;
-    }
-    int count()
-    {
-        if (ulaz >= izlaz)
-        {
-            return (ulaz - izlaz);
-        }
-        else
-        {
-            return (ulaz - izlaz + MAX);
-        }
     }
 };
 int main(void)
@@ -51,10 +40,10 @@ int main(void)
     for (int i = 0; i < n; i++)
     {
         cin >> item;
-        q->enqueue(item);
+        q->dodaj(item);
     }
 
-    while (q->dequeue(item))
+    while (q->skini(item))
         cout << item << ' ';
     cout << endl;
 
