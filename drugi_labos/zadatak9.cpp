@@ -25,7 +25,7 @@ void swap(Zapis *a, Zapis *b)
 void insertionSort(Zapis A[], int n, char smjer)
 {
     int i, j;
-    if (smjer == '1')
+    if (smjer == '0')
     {
         int min;
         for (i = 0; i < n; i++)
@@ -39,7 +39,7 @@ void insertionSort(Zapis A[], int n, char smjer)
             swap(&A[i], &A[min]);
         }
     }
-    else if (smjer == '0')
+    else if (smjer == '1')
     {
         int max;
         for (i = 0; i < n; i++)
