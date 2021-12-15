@@ -25,32 +25,26 @@ void swap(Zapis *a, Zapis *b)
 void insertionSort(Zapis A[], int n, char smjer)
 {
     int i, j;
+    Zapis temp;
+
     if (smjer == '0')
     {
-        int min;
-        for (i = 0; i < n; i++)
+        for (i = 1; i < n; i++)
         {
-            min = i;
-            for (j = i + 1; j < n; j++)
-            {
-                if (A[j].postanskiBroj < A[min].postanskiBroj)
-                    min = j;
-            }
-            swap(&A[i], &A[min]);
+            temp = A[i];
+            for (j = i; j >= 1 && A[j - 1].postanskiBroj > temp.postanskiBroj; j--)
+                A[j] = A[j - 1];
+            A[j] = temp;
         }
     }
     else if (smjer == '1')
     {
-        int max;
-        for (i = 0; i < n; i++)
+        for (i = 1; i < n; i++)
         {
-            max = i;
-            for (j = i + 1; j < n; j++)
-            {
-                if (A[j].postanskiBroj > A[max].postanskiBroj)
-                    max = j;
-            }
-            swap(&A[i], &A[max]);
+            temp = A[i];
+            for (j = i; j >= 1 && A[j - 1].postanskiBroj < temp.postanskiBroj; j--)
+                A[j] = A[j - 1];
+            A[j] = temp;
         }
     }
 }
@@ -74,7 +68,7 @@ int main()
     }
 
     char smjer;
-    cout << "Smjer (0 ili 1): ";
+    cout << "Smjer (0=uzlazno ili 1=silazno): ";
     cin >> smjer;
 
     insertionSort(array, n, smjer);
